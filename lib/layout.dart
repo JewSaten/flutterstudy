@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 void main() => runApp(const MyLoginPage());
 
 class MyLoginPage extends StatelessWidget {
-  const MyLoginPage({super.key});
+  const MyLoginPage
+
+  ({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,28 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   TextEditingController userController = TextEditingController();
   TextEditingController pwdController = TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    _readAccount();
+  }
+
+  Future<void> _readAccount() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userController.text = prefs.getString('user') ?? '';
+      pwdController.text = prefs.getString('pwd') ?? '';
+    });
+  }
+
+  Future<void> _saveAccount() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('user', userController.text);
+    prefs.setString('pwd', pwdController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +77,6 @@ class LoginPageState extends State<LoginPage> {
               controller: userController,
             ),
             TextField(
-              obscureText: true,
               decoration: const InputDecoration(hintText: '输入密码'),
               controller: pwdController,
             ),
@@ -60,10 +85,7 @@ class LoginPageState extends State<LoginPage> {
                 child: ConstrainedBox(
                     constraints: const BoxConstraints.expand(height: 55.0),
                     child: ElevatedButton(
-                      onPressed: () {
-                        developer.log(
-                            '${userController.text}---${pwdController.text}登录');
-                      },
+                      onPressed: _saveAccount,
                       child: const Text('登录'),
                     )))
           ],

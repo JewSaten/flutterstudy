@@ -27,7 +27,7 @@ class DioPageState extends State<DioPageRoute> {
                     return ListView(
                         children: result!.data!.data
                             .map<Widget>(
-                                (e) => ListTile(title: Text(e["full_name"])))
+                                (e) => ListTile(title: Text(e['full_name'])))
                             .toList());
                   } else if (result.hasError) {
                     return Text('has error ${result.error}');

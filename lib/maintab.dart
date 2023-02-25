@@ -12,16 +12,16 @@ class MainTab extends StatelessWidget{
         child: Scaffold(
           appBar: AppBar(
             title: const Text('appbar sample'),
-            // bottom: TabBar(tabs: choices.map((choice) =>  Tab(
-            //     text: choice.title,
-            //   icon: Icon(choice.icon),
-            // )).toList(),
-            //   isScrollable: true,
-            // ),
+            bottom: TabBar(tabs: choices.map((choice) =>  Tab(
+                text: choice.title,
+              icon: Icon(choice.icon),
+            )).toList(),
+              isScrollable: true,
+            ),
           ),
           body: TabBarView(
             children:
-            choices.map((choice) => Padding(padding: const EdgeInsets.all(16),child: ChoiceCard(choice: choice,),) ).toList()
+            choices.map((choice) => ChoiceCard(choice: choice)).toList()
           ),
         ),
       ),
@@ -52,14 +52,9 @@ class ChoiceCard extends StatelessWidget{
     final TextStyle? textStyle = Theme.of(context).textTheme.displaySmall;
     return Card(
         color: Colors.white,
-      child: Center(child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-           Icon(choice.icon, size: 128.0, color: textStyle?.color),
+      child: Center(child:
            Text(choice.title, style: textStyle),
-        ],
-      )),
+      ),
       );
   }
   
