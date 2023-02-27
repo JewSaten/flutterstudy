@@ -1,0 +1,14 @@
+{
+  "user_input_hint_text": "계좌번호를 입력하세요",
+  "pwd_input_hint_text": "암호를 입력",
+  "login_btn_text": "로그인",
+  "hello": "안녕하세요， {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Tom"
+      }
+    }
+  }
+}

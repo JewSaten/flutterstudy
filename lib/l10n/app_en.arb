@@ -1,0 +1,15 @@
+{
+  "user_input_hint_text": "Enter the account number",
+  "pwd_input_hint_text": "Enter the password",
+  "login_btn_text": "Log in",
+
+  "hello": "Hello , {name}",
+  "@hello": {
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "format": "Tom"
+      }
+    }
+  }
+}

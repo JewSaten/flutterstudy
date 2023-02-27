@@ -1,0 +1,14 @@
+{
+  "user_input_hint_text": "输入账号",
+  "pwd_input_hint_text": "输入密码",
+  "login_btn_text": "登录",
+  "hello": "你好， {name}",
+  "@hello": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Tom"
+      }
+    }
+  }
+}
