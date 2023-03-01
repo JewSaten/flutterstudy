@@ -7,15 +7,15 @@ import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Build
 import android.widget.Toast
-import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import org.jetbrains.annotations.NotNull
 
 class MainActivity : FlutterActivity() {
     private val CHANNEL = "flutter.dev/channel"
 
-    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+    override fun configureFlutterEngine(@NotNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
             // This method is invoked on the main thread.
@@ -40,6 +40,10 @@ class MainActivity : FlutterActivity() {
                 }
             }
         }
+        flutterEngine
+            .platformViewsController
+            .registry
+            .registerViewFactory("platform-view", NativeViewFactory())
     }
 
     private fun getBatteryLevel(): Int {
